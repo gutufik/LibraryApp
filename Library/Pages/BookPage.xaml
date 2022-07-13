@@ -1,0 +1,59 @@
+﻿<Page x:Class="Library.Pages.BookPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Library.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BookPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="BtnGoBack"
+                Content="Назад"
+                Click="BtnGoBack_Click"/>
+        <TextBlock Text="Название"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Grid.Row="1"
+                   Grid.Column="1"/>
+        <TextBox x:Name="TbTitle"
+                 Text="{Binding Title}"
+                 FontSize="20"
+                 Grid.Row="1"
+                 Grid.Column="2"
+                 VerticalAlignment="Center"/>
+        <TextBlock Text="Автор"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Grid.Row="2"
+                   Grid.Column="1"/>
+        <TextBox x:Name="TbAuthor"
+                 Text="{Binding Author}"
+                 FontSize="20"
+                 Grid.Row="2"
+                 Grid.Column="2"
+                 VerticalAlignment="Center"/>
+
+        <Button x:Name="BtnSave"
+                Content="Сохранить"
+                Click="BtnSave_Click"
+                Grid.Column="1"
+                Grid.Row="3" 
+                Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Page>
