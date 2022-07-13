@@ -71,19 +71,16 @@ namespace Library.Data
                 entity.HasOne(d => d.Book)
                     .WithMany(p => p.BookTransfers)
                     .HasForeignKey(d => d.BookId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_book");
 
                 entity.HasOne(d => d.Reader)
                     .WithMany(p => p.BookTransfers)
                     .HasForeignKey(d => d.ReaderId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_reader");
 
                 entity.HasOne(d => d.TransferType)
                     .WithMany(p => p.BookTransfers)
                     .HasForeignKey(d => d.TransferTypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_transfer_type");
             });
 
