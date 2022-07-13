@@ -9,6 +9,96 @@
       Title="TransferPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="25"
+                   Text="Редактирование передачи книги"/>
+        <Button x:Name="BtnGoBack"
+                Content="Назад"
+                Click="BtnGoBack_Click"/>
+        <TextBlock Text="Читатель"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Grid.Row="1"
+                   Grid.Column="1"/>
+        <ComboBox x:Name="CbReader"
+                 SelectedItem="{Binding Transfer.Reader}"
+                 ItemsSource="{Binding Readers}"
+                 FontSize="20"
+                 Grid.Row="1"
+                 Grid.Column="2"
+                 VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <Run Text="{Binding LastName}"/>
+                        <Run Text="{Binding FirstName}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock Text="Книга"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Grid.Row="2"
+                   Grid.Column="1"/>
+        <ComboBox x:Name="CbBook"
+                 SelectedItem="{Binding Transfer.Book}"
+                 ItemsSource="{Binding Books}"
+                 FontSize="20"
+                 Grid.Row="2"
+                 Grid.Column="2"
+                 VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <Run Text="{Binding Title}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock Text="Действие"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Grid.Row="3"
+                   Grid.Column="1"/>
+        <ComboBox x:Name="CbType"
+                 SelectedItem="{Binding Transfer.TransferType}"
+                 ItemsSource="{Binding Types}"
+                 FontSize="20"
+                 Grid.Row="3"
+                 Grid.Column="2"
+                 VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <Run Text="{Binding Name}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Button x:Name="BtnSave"
+                Content="Сохранить"
+                Click="BtnSave_Click"
+                Grid.Column="1"
+                Grid.Row="4" 
+                Grid.ColumnSpan="2"/>
+
     </Grid>
 </Page>

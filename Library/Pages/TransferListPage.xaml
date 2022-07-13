@@ -13,10 +13,29 @@
             <RowDefinition/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatMidBgButton}">
+                        <Setter Property="Margin" Value="20, 0"/>
+                    </Style>
+                </ResourceDictionary>
+            </StackPanel.Resources>
+            <TextBox x:Name="TbSearch"
+                     Width="200"
+                     VerticalAlignment="Center"
+                    TextChanged="TbSearch_TextChanged"/>
+            <Button x:Name="BtnAdd"
+                    Content="Добавить"
+                    Click="BtnAdd_Click"/>
+            <Button x:Name="BtnEdit"
+                    Content="Редактировать"
+                    Click="BtnEdit_Click"/>
+
+        </StackPanel>
         <ListView x:Name="LvTransfers"
                   ItemsSource="{Binding Transfers}"
-                  Grid.Row="1"
-                  SelectionChanged="LvTransfers_SelectionChanged">
+                  Grid.Row="1">
             <ListView.Resources>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
                     <Setter Property="FontSize" Value="20"/>
@@ -42,6 +61,16 @@
                                         DisplayMemberBinding="{Binding Book.Title}"/>
                         <GridViewColumn Header="Действие"
                                         DisplayMemberBinding="{Binding TransferType.Name}"/>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="BtnDelete"
+                                            Content="Удалить"
+                                            Click="BtnDelete_Click"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+
+                        </GridViewColumn>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

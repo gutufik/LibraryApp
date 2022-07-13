@@ -39,11 +39,6 @@ namespace Library.Pages
             LvBooks.Items.Refresh();
         }
 
-        private void LvBooks_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
         private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             Books = DataAccess.GetBooks().Where(x => x.Title.ToLower().Contains(TbSearch.Text.ToLower())).ToList();

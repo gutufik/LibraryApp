@@ -9,6 +9,57 @@
       Title="ReaderPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="25"
+                   Text="Редактирование читателя"/>
+        <Button x:Name="BtnGoBack"
+                Content="Назад"
+                Click="BtnGoBack_Click"/>
+        <TextBlock Text="Фамилия"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Grid.Row="1"
+                   Grid.Column="1"/>
+        <TextBox x:Name="TbTitle"
+                 Text="{Binding LastName}"
+                 FontSize="20"
+                 Grid.Row="1"
+                 Grid.Column="2"
+                 VerticalAlignment="Center"/>
+        <TextBlock Text="Имя"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Grid.Row="2"
+                   Grid.Column="1"/>
+        <TextBox x:Name="TbAuthor"
+                 Text="{Binding FirstName}"
+                 FontSize="20"
+                 Grid.Row="2"
+                 Grid.Column="2"
+                 VerticalAlignment="Center"/>
+
+        <Button x:Name="BtnSave"
+                Content="Сохранить"
+                Click="BtnSave_Click"
+                Grid.Column="1"
+                Grid.Row="3" 
+                Grid.ColumnSpan="2"/>
+
     </Grid>
 </Page>

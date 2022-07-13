@@ -36,8 +36,7 @@
         </StackPanel>
         <ListView x:Name="LvBooks"
                   ItemsSource="{Binding Books}"
-                  Grid.Row="1"
-                  SelectionChanged="LvBooks_SelectionChanged">
+                  Grid.Row="1">
             <ListView.Resources>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
                     <Setter Property="FontSize" Value="20"/>

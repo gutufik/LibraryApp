@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Library.Data;
 
 namespace Library.Pages
 {
@@ -20,9 +21,33 @@ namespace Library.Pages
     /// </summary>
     public partial class TransferPage : Page
     {
-        public TransferPage()
+        public List<TransferType> Types { get; set; }
+        public List<Book> Books { get; set; }
+        public List<Reader> Readers { get; set; }
+
+        public BookTransfer Transfer { get; set; }
+
+        public TransferPage(BookTransfer transfer)
         {
             InitializeComponent();
+            Types = DataAccess.GetTransferTypes();
+            Books = DataAccess.GetBooks();
+            Readers = DataAccess.GetReaders();
+            Transfer = transfer;
+            DataContext = this;
+        }
+
+        private void BtnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataAccess.SaveTransfer(Transfer))
+                NavigationService.GoBack();
+            else
+                MessageBox.Show("Данные заполнены некорректно");
         }
     }
 }

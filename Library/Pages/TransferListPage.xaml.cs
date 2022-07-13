@@ -26,12 +26,44 @@ namespace Library.Pages
         {
             InitializeComponent();
             Transfers = DataAccess.GetBookTransfers();
+            DataAccess.Refresh += RefreshList;
             DataContext = this;
         }
-
-        private void LvTransfers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RefreshList()
         {
+            TbSearch.Text = "";
+            Transfers = DataAccess.GetBookTransfers();
+            LvTransfers.ItemsSource = Transfers;
+            LvTransfers.Items.Refresh();
+        }
 
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var transfer = new BookTransfer();
+            NavigationService.Navigate(new TransferPage(transfer));
+        }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var transfer = LvTransfers.SelectedItem as BookTransfer;
+
+            if (transfer != null)
+                NavigationService.Navigate(new TransferPage(transfer));
+        }
+
+        private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Transfers = DataAccess.GetBookTransfers().Where(x => x.Book.Title.ToLower().Contains(TbSearch.Text.ToLower())).ToList();
+            LvTransfers.ItemsSource = Transfers;
+            LvTransfers.Items.Refresh();
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var transfer = (sender as Button).DataContext as BookTransfer;
+
+            if (MessageBox.Show("Вы точно хотите удалить эту запись?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                DataAccess.DeleteTransfer(transfer);
         }
     }
 }

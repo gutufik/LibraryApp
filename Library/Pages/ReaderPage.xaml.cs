@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Library.Data;
 
 namespace Library.Pages
 {
@@ -20,9 +21,25 @@ namespace Library.Pages
     /// </summary>
     public partial class ReaderPage : Page
     {
-        public ReaderPage()
+        public Reader Reader { get; set; }
+        public ReaderPage(Reader reader)
         {
             InitializeComponent();
+            this.Reader = reader;
+            DataContext = Reader;
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataAccess.SaveReader(Reader))
+                NavigationService.GoBack();
+            else
+                MessageBox.Show("Данные заполнены некорректно");
+        }
+
+        private void BtnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

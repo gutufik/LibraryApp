@@ -32,6 +32,45 @@ namespace Library.Data
             return LibraryContext.GetContext().TransferTypes.ToList();
         }
 
+        internal static bool SaveReader(Reader reader)
+        {
+            try
+            {
+                if (GetReaders().FirstOrDefault(x => x.Id == reader.Id) == null)
+                    LibraryContext.GetContext().Readers.Add(reader);
+                LibraryContext.GetContext().SaveChanges();
+                Refresh?.Invoke();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        internal static bool SaveTransfer(BookTransfer transfer)
+        {
+            try
+            {
+                if (GetBookTransfers().FirstOrDefault(x => x.Id == transfer.Id) == null)
+                    LibraryContext.GetContext().BookTransfers.Add(transfer);
+                LibraryContext.GetContext().SaveChanges();
+                Refresh?.Invoke();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        internal static void DeleteTransfer(BookTransfer? transfer)
+        {
+            LibraryContext.GetContext().BookTransfers.Remove(transfer);
+            LibraryContext.GetContext().SaveChanges();
+            Refresh?.Invoke();
+        }
+
         internal static bool SaveBook(Book book)
         {
             try
@@ -52,6 +91,13 @@ namespace Library.Data
         internal static void DeleteBook(Book? book)
         {
             LibraryContext.GetContext().Books.Remove(book);
+            LibraryContext.GetContext().SaveChanges();
+            Refresh?.Invoke();
+        }
+
+        internal static void DeleteReader(Reader? reader)
+        {
+            LibraryContext.GetContext().Readers.Remove(reader);
             LibraryContext.GetContext().SaveChanges();
             Refresh?.Invoke();
         }
